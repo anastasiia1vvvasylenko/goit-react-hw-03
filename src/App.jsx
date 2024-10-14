@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactList from './components/ContactList/ContactList';
-import Contact from './components/Contact/Contact';
 
 function App() {
   const [contacts, setContacts] = useState(() => {
@@ -52,19 +51,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox value={filter} onFilter={setFilter} />
-      <ContactList>
-        {visibleContacts.map(contactItem => {
-          return (
-            <Contact
-              key={contactItem.id}
-              id={contactItem.id}
-              name={contactItem.name}
-              phone={contactItem.number}
-              onDelete={deleteContact}
-            />
-          );
-        })}
-      </ContactList>
+      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
     </div>
   );
 }
